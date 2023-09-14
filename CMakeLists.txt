@@ -12,12 +12,13 @@ FetchContent_Declare(
   GIT_TAG        main
 )
 
+# Use a custom file name for dependency files
+set(REPOMAN_DEPENDENCIES_FILE_NAME "dependencies.txt" CACHE STRING "")
+
 FetchContent_MakeAvailable(cmake_utilities)
 
-fetchcontent_dependencies(
-    FILENAME dependencies.txt 
-    WORKSPACE ws)
-
+list(APPEND CMAKE_MODULE_PATH ${cmake_utilities_SOURCE_DIR}/experiments)
+include(CompilerFlags)
 
 ################################################################################
 # the library
